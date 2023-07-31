@@ -11,20 +11,43 @@ public class BadNeighbors {
     public static int maxDonations(int[] donations) {
         int answer = 0;
 
-        int index = 0;
+        boolean[] check = new boolean[donations.length];
+
+        int maxIndex = 0;
+        int minIndex = 0;
+        int max = donations[0];
         int min = donations[0];
 
         for (int i = 1; i < donations.length; i++) {
             if (min > donations[i]) {
                 min = donations[i];
-                index = i;
+                minIndex = i;
+            }
+            if (max < donations[i]) {
+                if (i != (donations.length - 1)) {
+                    int maxTemp = donations[i];
+                    int before = donations[i - 1];
+                    int after = donations[i + 1];
+                    if (maxTemp >= (before + after)) {
+                        max = donations[i];
+                        maxIndex = i;
+                        check[i] = true;
+                    } else {
+                        max = donations[i - 1];
+                        maxIndex = i - 1;
+                        check[i - 1] = true;
+                        check[i + 1] = true;
+                    }
+                }
             }
         }
 
-        
+        System.out.println("max index : " + maxIndex + ", max : " + max);
+        System.out.println("min index : " + minIndex + ", min : " + min);
 
-        System.out.println("index : " + index + ", min : " + min);
+        for (int i = maxIndex; i < donations.length; i++) {
 
+        }
 
         return answer;
     }
