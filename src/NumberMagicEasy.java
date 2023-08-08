@@ -1,11 +1,14 @@
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class NumberMagicEasy {
     public static void main(String[] args) {
         String answer = "YNYY";
 
-        theNumber(answer);
+        int i = theNumber(answer);
+        System.out.println("i = " + i);
 
     }
 
@@ -23,25 +26,63 @@ public class NumberMagicEasy {
         list[2] = card3;
         list[3] = card4;
 
-        Set<Integer> set = new HashSet<>();
+        List<Integer> temp = new ArrayList<>();
+        boolean tempCheck = false;
+
         String[] split = answer.split("");
         for (int i = 0; i < split.length; i++) {
             String check = split[i];
             if ("Y".equals(check)) {
                 int[] ints = list[i];
-                for (int anInt : ints) {
-                    set.add(anInt);
+                if (!tempCheck) {
+                    for (int anInt : ints) {
+                        temp.add(anInt);
+                    }
+                    tempCheck = true;
+                    continue;
+                }
+                for (int j = 0; j < temp.size(); j++) {
+                    int tempInt = temp.get(j);
+                    boolean cardCheck = false;
+                    for (int k = 0; k < ints.length; k++) {
+                        int cardInt = ints[k];
+                        if (tempInt == cardInt) {
+                            cardCheck = true;
+                        }
+                    }
+                    if (!cardCheck) {
+                        temp.remove(j);
+                    }
                 }
             } else if ("N".equals(check)) {
+                if (!tempCheck) {
+                    continue;
+                }
                 int[] ints = list[i];
-                for (int anInt : ints) {
-                    set.remove(anInt);
+                for (int j = 0; j < temp.size(); j++) {
+                    int tempInt = temp.get(j);
+                    boolean cardCheck = false;
+                    for (int k = 0; k < ints.length; k++) {
+                        int cardInt = ints[k];
+                        if (tempInt == cardInt) {
+                            cardCheck = true;
+                        }
+                    }
+                    if (cardCheck) {
+                        temp.remove(j);
+                    }
                 }
             }
-            System.out.println("set = " + set);
+            System.out.println("Index : " + i + ", " + temp);
         }
 
-        System.out.println("set = " + set);
+        System.out.println(temp);
+
+        if (temp.size() > 0) {
+            result = temp.get(0);
+        } else {
+            result = 16;
+        }
 
         return result;
     }
