@@ -38,6 +38,7 @@ public class BadNeighbors {
                         check[i - 1] = true;
                         check[i + 1] = true;
                     }
+
                 }
             }
         }
