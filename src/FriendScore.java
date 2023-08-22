@@ -11,7 +11,7 @@
 public class FriendScore {
     // friends[] = {"NNN", "NNN", NNN"} , 0
     // friends[] = {"NYY", "YNY", "YYN"} , 2
-    // friends[] = {"NYNNN", "YNYNN", "NYNYN", "NNYNY", "NNNYN"}
+    // friends[] = {"NYNNN", "YNYNN", "NYNYN", "NNYNY", "NNNYN"}, 4
     // friends[] = {"NNNNYNNNNN", "NNNNYNYYNN", "NNNYYYNNNN", "NNYNNNNNNN", "YYYNNNNNNY", "NNYNNNNNYN", "NYNNNNNYNN", "NYNNNNYNNN", "NNNNNYNNNN", "NNNNYNNNNN"} , 8
     public static void main(String[] args) {
 
